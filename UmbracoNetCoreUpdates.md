@@ -67,20 +67,15 @@ In this section you will find a list of Umbraco .Net Core resources provided by 
 * [Youtube: umbraCoffee #110 - Meet the Unicore team](https://www.youtube.com/watch?v=55xAuUxkpUo&ab_channel=umbraCoffee)
 * [Umbraco Community: Unicore Team update](https://www.youtube.com/watch?v=0WmP3Xdq9dU)
 
-## Umbraco 9 (.NET 5) Beta
+## Umbraco 9 (.NET 5) Release Candidate
 
 :::warning
-As this is an **beta release**, bugs and minor issues are to be expected.
-
-You can find a list of known issues [on this page](#known-issues-and-missing-parts-in-current-beta-release)
+As this is an **release candidate**, bugs and minor issues are to be expected.
 
 Found a bug that isn't already reported? Please report it on the [GitHub tracker](https://github.com/umbraco/Umbraco-CMS/issues/new?assignees=&labels=type%2Fbug&template=01_bug_report.yml). 
 :::
 
 To get started, follow the steps outlined below.
-
-### Known issues and missing parts in current Beta release
-* Packages can only include dll/assemblies when distributed by NuGet
 
 ### Prerequisites
 
@@ -89,26 +84,20 @@ To get started, follow the steps outlined below.
 
 ### Steps to install the Umbraco `dotnet new` template
 
-1. Use a command prompt of your choice to insert this custom NuGet feed:
-
-    ```none
-    dotnet nuget add source "https://www.myget.org/F/umbracoprereleases/api/v3/index.json" -n "Umbraco Prereleases"
-    ```
-
 1. Install the new Umbraco dotnet template:
 
     ```none
-    dotnet new -i Umbraco.Templates::9.0.0-beta004
+    dotnet new -i Umbraco.Templates::9.0.0-rc001
     ```
 
-### [Optional] Update the template from earlier alpha versions
+### [Optional] Update the template from earlier pre-release versions
 
 If you have already installed the Umbraco `dotnet new` template, you will need ensure it is up-to-date
 
 1. Use a command prompt of your choice to update the `dotnet new` templates
 
     ```none
-    dotnet new -i Umbraco.Templates::9.0.0-beta004
+    dotnet new -i Umbraco.Templates::9.0.0-rc001
     ```
 
 ### Steps to create an Umbraco solution using the `dotnet new` template
@@ -146,7 +135,7 @@ The following steps, will continue using CLI based on the steps above.
     dotnet run
     ```
 
-The project is now running on the [Kestrel server](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/?view=aspnetcore-5.0&tabs=windows#kestrel) and is available on the default ports: http://localhost:5000 and https://localhost:5001.
+The project is now running on the [Kestrel server](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/?view=aspnetcore-5.0&tabs=windows#kestrel) and is available on the ports listed in the console.
 
 The next step is to run through the Umbraco CMS installation. If you chose to use MS SQL Server/Azure you will need to add your connection string during this setup process.
 
@@ -297,6 +286,29 @@ See tickets tagged on [Github](https://github.com/umbraco/Umbraco-CMS/issues?q=l
   - Fixed issue with updating password
   - Fixed issue with members not approved by default when using the build-in macro snippets
   - Fixed issues with MediaPicker3
+
+### Changes between beta 4 and rc 1
+
+See tickets tagged on [Github](https://github.com/umbraco/Umbraco-CMS/issues?q=label%3Arelease%2F9.0.0-rc001+is%3Aclosed) for a full overview.
+
+#### Summary
+- Breaking changes
+  - Methods obsoleted in 8.15 removed
+  - Route plugin controllers by area
+  - RenderController configuration as .NETCore IOptions pattern
+- Features
+  - Packages migrations and UI changes to support NuGet packages. 
+  - 8.15 features
+- Bugfixes
+  - Changes the RoslynCompiler to use assemblies resolved from the DependencyContext (Fix for MB InMemoryAuto)
+  - Migrated missing surfaceaction extension methods 
+  - Add RazorCompileOnPublish property to UmbracoProject for template
+  - Migrated missing UmbracoAuthorizedController 
+  - Linux case-sensitive directories (Grid)
+  - Render grid editor partial async
+  - Render Block List component partial async
+  - Use english names for cultures in language CRUD
+  - Rebuild Database Cache button does nothing
 
 ## Umbraco Forms 9 (.NET Core) Beta
 
